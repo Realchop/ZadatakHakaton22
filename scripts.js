@@ -37,6 +37,8 @@ class Triangle{
 function init(){
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
+    ctx.fillStyle = secondaryColor;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     let base = new Triangle();
     ctx.fillStyle = primaryColor;
     base.draw();
