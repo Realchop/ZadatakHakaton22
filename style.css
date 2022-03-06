@@ -1,0 +1,12 @@
+#canvas1 {
+    width: 800px;
+    height: 692px;
+    border: 1px solid black;
+}
+
+form {
+    width: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 10px;
+}
