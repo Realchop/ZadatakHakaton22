@@ -1,10 +1,11 @@
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
-let animating = false;
-let latest_render_depth = 0;
+let primaryColor = "red";
+let secondaryColor = "white";
+let latest_render_depth = 8;
 
-canvas.width = 2000;
-canvas.height = 1732;
+let canvasWidth = 2000;
+let canvasHeight = 1732;
 
 class Point{
     constructor(x,y){
@@ -34,10 +35,12 @@ class Triangle{
 }
 
 function init(){
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
     let base = new Triangle();
-    ctx.fillStyle = "red";
+    ctx.fillStyle = primaryColor;
     base.draw();
-    ctx.fillStyle = "white";
+    ctx.fillStyle = secondaryColor;
     return base;
 }
 
@@ -70,7 +73,8 @@ function makeHole(tri){
     return [newTri1,newTri2,newTri3];
 }
 
-function main(depth){
+function main(depth=null){
+    if(depth==null) depth = latest_render_depth;
     let q = [init()];
     for(let d=0;d<depth;++d){
         let current = q.length;
@@ -89,9 +93,26 @@ function main(depth){
 }
 
 function changeResolution(value){
-    canvas.width = value;
-    canvas.height = value*0.866;
-    main(latest_render_depth);
+    canvasWidth = value;
+    canvasHeight = value*0.866;
 }
 
-main(8);
+function changeDepth(value){
+    latest_render_depth = value;
+}
+
+function download(){
+    let dl_link = document.getElementById("download_link");
+    dl_link.setAttribute("href", canvas.toDataURL('image/png'));
+    dl_link.click();
+}
+
+function changePrimary(value){
+    primaryColor = value;
+}
+
+function changeBackground(value){
+    secondaryColor = value;
+}
+
+main(latest_render_depth);

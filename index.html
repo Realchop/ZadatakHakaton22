@@ -11,9 +11,16 @@
     <canvas id="canvas1"></canvas>
     <form action="/" >
         <label>Depth: </label>
-        <input type="number" value="8" min="0" id="depth" onchange="main(this.value)" required>
+        <input type="number" value="8" min="0" id="depth" onchange="changeDepth(this.value)" required>
         <label>Width of image: </label>
         <input type="number" value="2000" step="100" min="200" id="width" onchange="changeResolution(this.value)" required>
+        <label>Pick color of the triangles: </label>
+        <input value="#f00" onchange="changePrimary(this.value)" >
+        <label>Pick background color: </label>
+        <input value="#fff" onchange="changeBackground(this.value)" >
+        <button type="button" onclick="main()" >Update view</button>
+        <button type="button" onclick="download()" >Download image</button>
+        <a id="download_link" hidden download="Sjerpinski triangle" ></a>
     </form>
     <script src="scripts.js"></script>
 </body>

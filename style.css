@@ -8,5 +8,5 @@ form {
     width: 500px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    row-gap: 10px;
+    gap: 10px;
 }
